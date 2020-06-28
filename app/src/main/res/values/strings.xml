@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android File Picker</string>
+
+    <string name="file_provider_name">.myFileProvider</string>
+</resources>

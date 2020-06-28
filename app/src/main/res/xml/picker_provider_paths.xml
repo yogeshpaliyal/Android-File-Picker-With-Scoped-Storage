@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--<external-path name="external_files" path="."/>
+    <external-cache-path
+        name="external_cache_files"
+        path="." />
+    <external-files-path
+        name="external_files_files"
+        path="." />
+    <external-files-path name="my_images" path="/" />
+    <external-files-path name="my_images_dcim" path="DCIM" />-->
+
+    <root-path
+        name="external_image"
+        path="." />
+
+    <external-cache-path
+        name="external_cache_files"
+        path="." />
+    <external-files-path
+        name="external_files_files"
+        path="." />
+    <external-path
+        name="external_files"
+        path="." />
+
+    <external-files-path
+        name="external_files_files_d"
+        path="." />
+</paths>
