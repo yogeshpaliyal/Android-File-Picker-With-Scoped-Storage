@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import com.example.androidfilepicker.databinding.ActivityMainBinding
+import com.example.androidfilepicker.extensions.getFile
 import com.example.androidfilepicker.extensions.getPath
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnFile.setOnClickListener {
             val fileIntent = Intent(Intent.ACTION_GET_CONTENT)
-            fileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+            fileIntent.addCategory(Intent.CATEGORY_OPENABLE)
             fileIntent.type = "*/*"
             startActivityForResult(fileIntent, REQUEST_FILE)
         }
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                     capturedImage = setImageUri()
 
-                    val  takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    val takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, capturedImage);
                     startActivityForResult(takePhotoIntent,REQUEST_CAMERA);
                 }
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
             val authprity: String =
-                getPackageName() + getString(R.string.file_provider_name)
+                packageName + getString(R.string.file_provider_name)
             imageUri = FileProvider.getUriForFile(
                 this, authprity,
                 file
@@ -114,10 +115,9 @@ class MainActivity : AppCompatActivity() {
             if (data != null && data.data != null)
                 uri = data.data
 
-            val path: String = getPath( uri)
-           // val extension: String = getExtension(uri!!).toLowerCase()
+            val path: File? = getFile(uri)
 
-            binding.txtFilePath.text = path
+            binding.txtFilePath.text = path?.path
 
         }
     }
