@@ -66,7 +66,7 @@ Give a ⭐️ if this project helped you!
 
 ## ☑️ TODO
 
-- [ ] Read file
+- [x] Read file
 - [ ] Write file in public folders
 - [ ] Write file anywhere with user consent
 
