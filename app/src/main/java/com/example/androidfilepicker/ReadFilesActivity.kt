@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import com.example.androidfilepicker.databinding.ActivityReadFilesBinding
-import com.example.androidfilepicker.extensions.getFile
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -61,7 +60,7 @@ class ReadFilesActivity : AppCompatActivity() {
             .withListener(object: PermissionListener {
 
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                    capturedImage = setImageUri()
+                   // capturedImage = setImageUri()
 
                     val takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, capturedImage)
@@ -82,45 +81,45 @@ class ReadFilesActivity : AppCompatActivity() {
             }).check();
     }
 
-    private fun setImageUri(): Uri? {
-        var imageUri: Uri? = null
-        try {
-            val folder: File? = getExternalFilesDir(null)
-            if (folder?.exists() == false)
-                folder.mkdirs()
-            val file = File(folder, "Image_Tmp11.jpg")
-            if (file.exists()) file.delete()
-            try {
-                file.createNewFile()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            val authprity: String =
-                packageName + getString(R.string.file_provider_name)
-            imageUri = FileProvider.getUriForFile(
-                this, authprity,
-                file
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return imageUri
-    }
+//    private fun setImageUri(): Uri? {
+//        var imageUri: Uri? = null
+//        try {
+//            val folder: File? = getExternalFilesDir(null)
+//            if (folder?.exists() == false)
+//                folder.mkdirs()
+//            val file = File(folder, "Image_Tmp11.jpg")
+//            if (file.exists()) file.delete()
+//            try {
+//                file.createNewFile()
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//            }
+//            val authprity: String =
+//                packageName + getString(R.string.file_provider_name)
+//            imageUri = FileProvider.getUriForFile(
+//                this, authprity,
+//                file
+//            )
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//        return imageUri
+//    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            var uri = capturedImage
-            if (data != null && data.data != null)
-                uri = data.data
-
-            val path: File? = getFile(uri)
-
-            binding.txtFilePath.text = path?.path
-            binding.img.setImageURI(uri)
-
-        }
+//        if (resultCode == Activity.RESULT_OK) {
+//            var uri = capturedImage
+//            if (data != null && data.data != null)
+//                uri = data.data
+//
+//            val path: File? = getFile(uri)
+//
+//            binding.txtFilePath.text = path?.path
+//            binding.img.setImageURI(uri)
+//
+//        }
     }
 
 }
