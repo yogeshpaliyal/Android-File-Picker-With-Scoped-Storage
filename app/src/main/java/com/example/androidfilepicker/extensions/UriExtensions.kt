@@ -5,7 +5,11 @@ import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.webkit.MimeTypeMap
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,11 +17,6 @@ import java.util.*
 private const val tag = "FileUtils"
 
 
-fun Context.getPath(
-    uri: Uri?
-): String {
-    return getFile(uri)?.path ?: ""
-}
 
 /**
  * @author Yogesh Paliyal
